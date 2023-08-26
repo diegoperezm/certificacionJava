@@ -21,12 +21,21 @@ public class PeliculasController {
 	public PeliculasController(PeliculasDAO peliculasDAO) {
 		this.peliculasDAO = peliculasDAO;
 	}
+
+    @GetMapping("/")	
+    public String index(Model model) {
+      List<Peliculas> listaPeliculas = peliculasDAO.findAll();
+      model.addAttribute("listaPeliculas", listaPeliculas);
+      return  "listadopeliculas";
+    }
+
+
 	
     @GetMapping("/listadoPeliculas")	
     public String listadoPeliculas(Model model) {
       List<Peliculas> listaPeliculas = peliculasDAO.findAll();
       model.addAttribute("listaPeliculas", listaPeliculas);
-      return "listadopeliculas";
+      return  "listadopeliculas";
     }
 
 }
