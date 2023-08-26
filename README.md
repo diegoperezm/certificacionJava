@@ -3,9 +3,9 @@
 # Diego Alonso Pérez Muñoz
 ---
 
-La base de datos se encuentra en la carpeta "DB". 
+## Base De Datos
 
-Las consultas del análisis exploratorio de la base de datos se encuentra en el package: "package consultas". 
+La base de datos y las consultas se encuentran en la carpeta "DB".
 
 
 

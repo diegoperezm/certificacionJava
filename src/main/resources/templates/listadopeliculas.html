@@ -21,14 +21,13 @@
 						<tr>
 							<th>Id</th>
 							<th>Título</th>
-							<th>Género</th>
 							<th>Lanzamiento</th>
 						</tr>
 						<tr th:each="pelicula : ${listaPeliculas}">
 							<td th:text="${pelicula.id_pelicula}"></td>
 							<td th:text="${pelicula.titulo}"></td>
 							<td th:text="${pelicula.anio_lanzamiento}"></td>
-							<td th:text="${pelicula.id_genero}"></td>
+							<td> <a href="/calificarPelicula" class="btn btn-primary">calificar</a> </td>
 						</tr>
 					</table>
 				</div>

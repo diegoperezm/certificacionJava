@@ -30,7 +30,7 @@ PeliculasDAO peliculasDAO;
 
    for(Peliculas p : peliculas) {
 	    l.put(p.getTitulo().toString(),
-	    	  p.getAnio_lanzamiento()
+	    	  Integer.toString(p.getAnio_lanzamiento())
 	    	 );
 	    }
 
