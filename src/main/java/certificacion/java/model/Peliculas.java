@@ -1,6 +1,20 @@
 package certificacion.java.model;
 
-import jakarta.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "peliculas")
@@ -15,7 +29,23 @@ public class Peliculas {
     
     @ManyToOne(fetch= FetchType.LAZY, optional=false)
     @JoinColumn(name="id_genero")
+    @JsonIgnore
 	private Generos genero;
+
+    
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "pelicula")
+    @JsonIgnore
+    private Set<Calificaciones> calificacion = new HashSet<>();
+
+    
+    
+	public Set<Calificaciones> getCalificacion() {
+		return calificacion;
+	}
+
+	public void setCalificacion(Set<Calificaciones> calificacion) {
+		this.calificacion = calificacion;
+	}
 
 	public Generos getGenero() {
 		return genero;
@@ -50,14 +80,6 @@ public class Peliculas {
 	public void setAnio_lanzamiento(int anio_lanzamiento) {
 		this.anio_lanzamiento = anio_lanzamiento;
 	}
-
-	@Override
-	public String toString() {
-		return "Peliculas [id_pelicula=" + id_pelicula + ", titulo=" + titulo + ", anio_lanzamiento=" + anio_lanzamiento
-				+ ", genero=" + genero + "]";
-	}
-
-	
 
 
 }
