@@ -12,10 +12,20 @@ public class Peliculas {
 
 	private String titulo;
 	private int anio_lanzamiento;
-	private int id_genero;
+    
+    @ManyToOne(fetch= FetchType.LAZY, optional=false)
+    @JoinColumn(name="id_genero")
+	private Generos genero;
 
-	public Peliculas() {
+	public Generos getGenero() {
+		return genero;
 	}
+
+	public void setGenero(Generos genero) {
+		this.genero = genero;
+	}
+
+	public Peliculas() { }
 
 	public int getId_pelicula() {
 		return id_pelicula;
@@ -41,18 +51,13 @@ public class Peliculas {
 		this.anio_lanzamiento = anio_lanzamiento;
 	}
 
-	public int getId_genero() {
-		return id_genero;
-	}
-
-	public void setId_genero(int id_genero) {
-		this.id_genero = id_genero;
-	}
-
 	@Override
 	public String toString() {
 		return "Peliculas [id_pelicula=" + id_pelicula + ", titulo=" + titulo + ", anio_lanzamiento=" + anio_lanzamiento
-				+ ", id_genero=" + id_genero + "]";
+				+ ", genero=" + genero + "]";
 	}
+
+	
+
 
 }

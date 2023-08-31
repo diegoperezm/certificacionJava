@@ -18,38 +18,25 @@ public class PeliculasController {
 
 	private final PeliculasDAO peliculasDAO;
 
-	@Autowired
 	public PeliculasController(PeliculasDAO peliculasDAO) {
 		this.peliculasDAO = peliculasDAO;
 	}
 
-	
-    @PostMapping("/addCalificacion?")	
-    public String addCalificacon() {
-      return  "listadopeliculas";
-    }
+	@GetMapping("/")
+	public String index(Model model) {
+		List<Peliculas> listaPeliculas = peliculasDAO.findAll();
+		model.addAttribute("listaPeliculas", listaPeliculas);
+		return "listadopeliculas";
+	}
 
+	@PostMapping("/addCalificacion?")
+	public String addCalificacon() {
+		return "listadopeliculas";
+	}
 
-	
-    @GetMapping("/")	
-    public String index(Model model) {
-      List<Peliculas> listaPeliculas = peliculasDAO.findAll();
-      model.addAttribute("listaPeliculas", listaPeliculas);
-      return  "listadopeliculas";
-    }
-
-
-    @GetMapping("/calificarPelicula")	
-    public String calificarPelicula() {
-      return  "calificar";
-    }
-
-   
-    @GetMapping("/listadoPeliculas")	
-    public String listadoPeliculas(Model model) {
-      List<Peliculas> listaPeliculas = peliculasDAO.findAll();
-      model.addAttribute("listaPeliculas", listaPeliculas);
-      return  "listadopeliculas";
-    }
+	@GetMapping("/calificarPelicula")
+	public String calificarPelicula() {
+		return "calificar";
+	}
 
 }
