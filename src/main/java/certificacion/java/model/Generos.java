@@ -29,9 +29,4 @@ public class Generos {
 		this.nombre_genero = nombre_genero;
 	}
 
-	@Override
-	public String toString() {
-		return "Generos [id_genero=" + id_genero + ", nombre_genero=" + nombre_genero + "]";
-	}
-
 }

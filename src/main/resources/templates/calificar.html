@@ -14,9 +14,33 @@
 	<div class="container">
 		<div class="row">
 			<div class="col">
-				<form action="/addCalficacion">
-					<h1>Película:</h1>
 
+				<div th:if="${pelicula !=null }">
+					<table class="table table-striped table-hover">
+						<tr>
+							<th>Id</th>
+							<th>Título</th>
+							<th>Género</th>
+							<th>Lanzamiento</th>
+							<th>Promedio Calificación</th>
+							<th>Acción</th>
+						</tr>
+						<tr>
+							<td th:text="${pelicula.id_pelicula}"></td>
+							<td th:text="${pelicula.titulo}"></td>
+							<td th:text="${pelicula.anio_lanzamiento}"></td>
+							<td th:text="${pelicula.genero.nombre_genero}"></td>
+							<td> vacio por el momento</td>
+						</tr>
+
+					</table>
+				</div>
+	
+
+ 
+			<form action="/addCalficacion">
+					<h1>Película:</h1>
+       
 					<label class="mt-2" for="tipo">Seleccione calificación:</label>
 					<select class="custom-select" >
 						<option value="0">0</option>

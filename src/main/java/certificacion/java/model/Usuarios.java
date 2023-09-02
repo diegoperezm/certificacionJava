@@ -48,10 +48,5 @@ public class Usuarios {
 		this.contrasena = contrasena;
 	}
 
-	@Override
-	public String toString() {
-		return "Usuarios [id_usuario=" + id_usuario + ", nombreusuario=" + nombreusuario + ", correoelectronico="
-				+ correoelectronico + ", contrasena=" + contrasena + "]";
-	};
 
 }

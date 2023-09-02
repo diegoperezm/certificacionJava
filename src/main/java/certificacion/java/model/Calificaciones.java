@@ -64,11 +64,4 @@ public class Calificaciones {
 		this.usuario = usuario;
 	}
 
-	@Override
-	public String toString() {
-		return "Calificaciones [id_calificacion=" + id_calificacion + ", pelicula=" + pelicula + ", usuario=" + usuario
-				+ ", puntuacion=" + puntuacion + ", resena=" + resena + "]";
-	}
-
-
 }

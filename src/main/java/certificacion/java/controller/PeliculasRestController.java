@@ -16,15 +16,12 @@ import certificacion.java.model.Peliculas;
 @RestController
 @RequestMapping("/api/v1")
 public class PeliculasRestController {
-@Autowired 
-PeliculasDAO peliculasDAO;
-  	
+	@Autowired
+	PeliculasDAO peliculasDAO;
 
-
- @GetMapping("/p")	
-public ResponseEntity<List<Peliculas>> listaPeliculas() {
-    return ResponseEntity.ok(peliculasDAO.findAll());
-} 
-
+	@GetMapping("/p")
+	public ResponseEntity<List<Peliculas>> listaPeliculas() {
+		return ResponseEntity.ok(peliculasDAO.findAll());
+	}
 
 }

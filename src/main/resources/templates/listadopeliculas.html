@@ -32,9 +32,10 @@
 							<td th:text="${pelicula.anio_lanzamiento}"></td>
 							<td th:text="${pelicula.genero.nombre_genero}"></td>
 							<td> vacio por el momento</td>
-					<!--		<td th:text="${pelicula.calificacion.puntuacion}"></td> -->
-							<td> <a href="/calificarPelicula" class="btn btn-primary">calificar</a> </td>
+							<td> <a th:href="@{/calificarPelicula/{id}(id = ${pelicula.id_pelicula})}"
+						        	class="btn btn-primary">calificar</a> </td>
 						</tr>
+
 					</table>
 				</div>
 				<div th:if="${listaPeliculas == null or listaPeliculas.empty}">
