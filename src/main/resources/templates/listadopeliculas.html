@@ -23,17 +23,21 @@
 							<th>Título</th>
 							<th>Género</th>
 							<th>Lanzamiento</th>
+							<!-- TODAVIA NO ESTA IMPLEMENTADO --> 
 							<th>Promedio Calificación</th>
+							<!-- TODAVIA NO ESTA IMPLEMENTADO --> 
 							<th>Acción</th>
 						</tr>
 						<tr th:each="pelicula : ${listaPeliculas}">
 							<td th:text="${pelicula.id_pelicula}"></td>
 							<td th:text="${pelicula.titulo}"></td>
+							<td th:text="${pelicula.nombre_genero}"></td>
 							<td th:text="${pelicula.anio_lanzamiento}"></td>
-							<td th:text="${pelicula.genero.nombre_genero}"></td>
-							<td> vacio por el momento</td>
+							<td th:text="${pelicula.puntuacion}"></td>
 							<td> <a th:href="@{/calificarPelicula/{id}(id = ${pelicula.id_pelicula})}"
 						        	class="btn btn-primary">calificar</a> </td>
+
+
 						</tr>
 
 					</table>

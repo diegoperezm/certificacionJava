@@ -1,9 +1,7 @@
 package certificacion.java.model;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -29,22 +27,18 @@ public class Peliculas {
     
     @ManyToOne(fetch= FetchType.LAZY, optional=false)
     @JoinColumn(name="id_genero")
-    @JsonIgnore
 	private Generos genero;
 
     
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "pelicula")
-    @JsonIgnore
-    private Set<Calificaciones> calificacion = new HashSet<>();
+    private List<Calificaciones> calificaciones = new ArrayList<>();
 
-    
-    
-	public Set<Calificaciones> getCalificacion() {
-		return calificacion;
+   	public List<Calificaciones> getCalificaciones() {
+		return calificaciones;
 	}
 
-	public void setCalificacion(Set<Calificaciones> calificacion) {
-		this.calificacion = calificacion;
+	public void setCalificaciones(List<Calificaciones> calificaciones) {
+		this.calificaciones = calificaciones;
 	}
 
 	public Generos getGenero() {
