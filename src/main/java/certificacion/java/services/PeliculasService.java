@@ -2,6 +2,8 @@ package certificacion.java.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,31 +30,31 @@ public class PeliculasService {
 	}
 
 	public List<PeliculasDTO> listarPeliculas() {
-
-		List<PeliculasDTO> p = new ArrayList<PeliculasDTO>();
-		List<Calificaciones> calificaciones = calificacionesDAO.findAll();
+		List<PeliculasDTO> peliculasDTO = new ArrayList<PeliculasDTO>();
 		List<Peliculas> peliculas = peliculasDAO.findAll();
-
-		for (Peliculas pelicula : peliculas) {
-			for (Calificaciones calificacion : calificaciones) {
-				if (pelicula.getId_pelicula() == calificacion.getPelicula().getId_pelicula()) {
-					p.add(new PeliculasDTO(
-							pelicula.getId_pelicula(),
-							calificacion.getPuntuacion(),
-							pelicula.getAnio_lanzamiento(),
-							pelicula.getTitulo(),
-							pelicula.getGenero().getNombre_genero()
-							)
-						);
-				}
-			}
-		}
-
-		return p;
+		
+	   for(Peliculas pelicula : peliculas) {
+  		   List<Integer> puntuaciones = getPuntaciones(pelicula);
+		   peliculasDTO.add(new PeliculasDTO(
+                              pelicula.getId_pelicula(),
+                              puntuaciones,
+                              pelicula.getAnio_lanzamiento(),
+                              pelicula.getTitulo(),
+                              pelicula.getGenero().getNombre_genero()
+		      		   ));
+	   }
+		return peliculasDTO;
+	}
+	
+	private List<Integer> getPuntaciones(Peliculas pelicula) {
+	   List<Integer> puntuaciones = pelicula
+			                     .getCalificaciones()
+			                     .stream()
+			                     .map(Calificaciones::getPuntuacion)
+			                     .collect(Collectors.toList());
+	   return puntuaciones;
 	}
 
-	public Peliculas buscarPorId(int id) {
-		return peliculasDAO.findById(id);
-	}
+
 
 }

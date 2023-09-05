@@ -1,10 +1,11 @@
 package certificacion.java.services.dto;
 
+import java.util.List;
 
 public class PeliculasDTO {
 
-	private int id_pelicula;
-	private int puntuacion;
+	private Long id_pelicula;
+	private List<Integer> puntuacion;
 	private int anio_lanzamiento;
 	private String titulo;
 	private String nombre_genero;
@@ -12,7 +13,8 @@ public class PeliculasDTO {
 	public PeliculasDTO() {
 	}
 
-	public PeliculasDTO(int id_pelicula, int puntuacion, int anio_lanzamiento, String titulo, String nombre_genero) {
+	public PeliculasDTO(Long id_pelicula, List<Integer> puntuacion, int anio_lanzamiento, String titulo,
+			String nombre_genero) {
 		super();
 		this.id_pelicula = id_pelicula;
 		this.puntuacion = puntuacion;
@@ -21,20 +23,20 @@ public class PeliculasDTO {
 		this.nombre_genero = nombre_genero;
 	}
 
-	public int getId_pelicula() {
-		return id_pelicula;
-	}
-
-	public void setId_pelicula(int id_pelicula) {
-		this.id_pelicula = id_pelicula;
-	}
-
-	public int getPuntuacion() {
+	public List<Integer> getPuntuacion() {
 		return puntuacion;
 	}
 
-	public void setPuntuacion(int puntuacion) {
+	public void setPuntuacion(List<Integer> puntuacion) {
 		this.puntuacion = puntuacion;
+	}
+
+	public Long getId_pelicula() {
+		return id_pelicula;
+	}
+
+	public void setId_pelicula(Long id_pelicula) {
+		this.id_pelicula = id_pelicula;
 	}
 
 	public int getAnio_lanzamiento() {

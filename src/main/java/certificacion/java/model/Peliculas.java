@@ -20,16 +20,17 @@ public class Peliculas {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id_pelicula;
+	private Long id_pelicula;
 
 	private String titulo;
 	private int anio_lanzamiento;
-    
+
+   // child 
     @ManyToOne(fetch= FetchType.LAZY, optional=false)
     @JoinColumn(name="id_genero")
 	private Generos genero;
 
-    
+// parent    
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "pelicula")
     private List<Calificaciones> calificaciones = new ArrayList<>();
 
@@ -51,11 +52,11 @@ public class Peliculas {
 
 	public Peliculas() { }
 
-	public int getId_pelicula() {
+	public Long getId_pelicula() {
 		return id_pelicula;
 	}
 
-	public void setId_pelicula(int id_pelicula) {
+	public void setId_pelicula(Long id_pelicula) {
 		this.id_pelicula = id_pelicula;
 	}
 

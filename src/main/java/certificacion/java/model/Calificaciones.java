@@ -9,11 +9,12 @@ public class Calificaciones {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_calificacion;
-
+// child
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_pelicula")
     private Peliculas pelicula;
 
+    // child
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_usuario")
 	private Usuarios usuario;
