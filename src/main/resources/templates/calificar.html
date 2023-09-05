@@ -23,26 +23,21 @@
 							<th>Género</th>
 							<th>Lanzamiento</th>
 							<th>Promedio Calificación</th>
-							<th>Acción</th>
 						</tr>
 						<tr>
 							<td th:text="${pelicula.id_pelicula}"></td>
 							<td th:text="${pelicula.titulo}"></td>
 							<td th:text="${pelicula.anio_lanzamiento}"></td>
 							<td th:text="${pelicula.genero.nombre_genero}"></td>
-							<td> vacio por el momento</td>
 						</tr>
 
 					</table>
 				</div>
-	
-
- 
-			<form action="/addCalficacion">
+			<form th:action="@{'/agregarCalificacion/'+ ${pelicula.id_pelicula}}" method="post">
 					<h1>Película:</h1>
        
 					<label class="mt-2" for="tipo">Seleccione calificación:</label>
-					<select class="custom-select" >
+					<select class="custom-select" name="calificacion" >
 						<option value="0">0</option>
 						<option value="1">1</option>
 						<option value="2">2</option>
