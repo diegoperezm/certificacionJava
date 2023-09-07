@@ -36,9 +36,17 @@ public class PeliculasService {
 		return peliculasDTO;
 	}
 
-	public Peliculas findPeliculaById(Long id) {
-		Optional<Peliculas> optPelicula = peliculasDAO.findById(id);
-		return optPelicula.orElseThrow(() -> new EntityNotFoundException("Pelicula no encontrada,ID: " + id));
+	public PeliculasDTO findPeliculaById(Long id) {
+		Peliculas pelicula = peliculasDAO.findById(id)
+	            .orElseThrow(() -> new EntityNotFoundException("Pelicula no encontrada, ID: " + id));
+
+	    List<Integer> puntuaciones = getPuntaciones(pelicula);
+
+	    return new PeliculasDTO(pelicula.getId_pelicula(),
+	            puntuaciones,
+	            pelicula.getAnio_lanzamiento(),
+	            pelicula.getTitulo(),
+	            pelicula.getGenero().getNombre_genero());
 	}
 
 	private List<Integer> getPuntaciones(Peliculas pelicula) {

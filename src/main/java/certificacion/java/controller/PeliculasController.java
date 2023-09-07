@@ -36,7 +36,7 @@ public class PeliculasController {
 
 	@GetMapping("/calificarPelicula/{id}")
 	public String calificarPelicula(@PathVariable Long id,Model model) {
-		Peliculas pelicula = peliculasService.findPeliculaById(id);
+		PeliculasDTO pelicula = peliculasService.findPeliculaById(id);
         model.addAttribute("pelicula", pelicula);
 	    return "calificar";	
 	}
@@ -45,7 +45,7 @@ public class PeliculasController {
 	@PostMapping("/agregarCalificacion/{id}")
 	public String calificarPelicula(@PathVariable Long id,
 			                        @RequestParam("calificacion") int calificacion , Model model) {
-	Peliculas pelicula = peliculasService.findPeliculaById(id);
+	PeliculasDTO pelicula = peliculasService.findPeliculaById(id);
 	 logger.info("calificación {}  ID: {}", calificacion, pelicula.getId_pelicula());
 	return "redirect:/listadoPeliculas";
 	}
