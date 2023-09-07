@@ -9,19 +9,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import certificacion.java.dao.PeliculasDAO;
-import certificacion.java.model.Peliculas;
+import certificacion.java.services.PeliculasService;
+import certificacion.java.services.dto.PeliculasDTO;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/v1")
 public class PeliculasRestController {
 	@Autowired
-	PeliculasDAO peliculasDAO;
+	PeliculasService peliculasService;
 
 	@GetMapping("/p")
-	public ResponseEntity<List<Peliculas>> listaPeliculas() {
-		return ResponseEntity.ok(peliculasDAO.findAll());
+	public ResponseEntity<List<PeliculasDTO>> listaPeliculas() {
+		List<PeliculasDTO> listaPeliculas =  peliculasService.listarPeliculas();
+		return ResponseEntity.ok(listaPeliculas);
 	}
 
 }
