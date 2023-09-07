@@ -41,7 +41,6 @@ public class PeliculasController {
 	    return "calificar";	
 	}
  
-    			
 	@PostMapping("/agregarCalificacion/{id}")
 	public String calificarPelicula(@PathVariable Long id,
 			                        @RequestParam("calificacion") int calificacion , Model model) {
@@ -49,4 +48,12 @@ public class PeliculasController {
 	 logger.info("calificación {}  ID: {}", calificacion, pelicula.getId_pelicula());
 	return "redirect:/listadoPeliculas";
 	}
+	
+    @PostMapping("/buscarPorTitulo")	
+    public String buscarPorTitulo(@RequestParam("titulo") String titulo, Model model) {
+     List<PeliculasDTO>  listaPeliculas = peliculasService.findPeliculaPorTitulo(titulo);
+     model.addAttribute("listaPeliculas", listaPeliculas);
+      return "listadopeliculas";	
+    }
+	
 }

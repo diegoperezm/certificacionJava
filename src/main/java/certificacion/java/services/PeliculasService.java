@@ -20,7 +20,7 @@ public class PeliculasService {
 	@Autowired
 	PeliculasDAO peliculasDAO;
 
-	public PeliculasService(PeliculasDAO peliculasDAO) {	
+	public PeliculasService(PeliculasDAO peliculasDAO) {
 		this.peliculasDAO = peliculasDAO;
 	}
 
@@ -33,20 +33,31 @@ public class PeliculasService {
 			peliculasDTO.add(new PeliculasDTO(pelicula.getId_pelicula(), puntuaciones, pelicula.getAnio_lanzamiento(),
 					pelicula.getTitulo(), pelicula.getGenero().getNombre_genero()));
 		}
+
 		return peliculasDTO;
 	}
 
 	public PeliculasDTO findPeliculaById(Long id) {
 		Peliculas pelicula = peliculasDAO.findById(id)
-	            .orElseThrow(() -> new EntityNotFoundException("Pelicula no encontrada, ID: " + id));
+				.orElseThrow(() -> new EntityNotFoundException("Pelicula no encontrada, ID: " + id));
 
-	    List<Integer> puntuaciones = getPuntaciones(pelicula);
+		List<Integer> puntuaciones = getPuntaciones(pelicula);
 
-	    return new PeliculasDTO(pelicula.getId_pelicula(),
-	            puntuaciones,
-	            pelicula.getAnio_lanzamiento(),
-	            pelicula.getTitulo(),
-	            pelicula.getGenero().getNombre_genero());
+		return new PeliculasDTO(pelicula.getId_pelicula(), puntuaciones, pelicula.getAnio_lanzamiento(),
+				pelicula.getTitulo(), pelicula.getGenero().getNombre_genero());
+	}
+
+	public List<PeliculasDTO> findPeliculaPorTitulo(String titulo) {
+		List<Peliculas> peliculas = peliculasDAO.findByTituloContaining(titulo);
+		List<PeliculasDTO> peliculasDTO = new ArrayList<PeliculasDTO>();
+
+		for (Peliculas pelicula : peliculas) {
+			List<Integer> puntuaciones = getPuntaciones(pelicula);
+			peliculasDTO.add(new PeliculasDTO(pelicula.getId_pelicula(), puntuaciones, pelicula.getAnio_lanzamiento(),
+					pelicula.getTitulo(), pelicula.getGenero().getNombre_genero()));
+		}
+
+		return peliculasDTO;
 	}
 
 	private List<Integer> getPuntaciones(Peliculas pelicula) {
